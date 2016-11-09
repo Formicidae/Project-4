@@ -5,6 +5,8 @@
 #include <string.h>
 #include <string>
 #include <sstream>
+#include <Node.h>
+#include <LinkedList.h>
 
 using namespace std;
 
@@ -14,6 +16,8 @@ int main()
     ifstream infile(infileName);
     string outfileName = "answers.txt";
     ofstream outfile(outfileName);
+    Node*head;
+    Node*old = head;
 
     while(!infile.eof()){
         char line[256];
@@ -29,16 +33,18 @@ int main()
 //        getline()
 
         stringK += 'N';
-        char sign = '+';
+        int sign = 1;
         if(stringK[1] == '-'){
-            sign = '-';
+            sign = -1;
             stringK = stringK.substr(2);
             cout << endl << stringK << endl;
         }
 
 
-        char nextsign = sign;
+        int nextsign = sign;
+        LinkedList llist;
         while(stringK.length() > 1){
+
             sign = nextsign;
             string term1 = "";
             float exp;
@@ -82,15 +88,15 @@ int main()
                 cout << "xp :" << xp << endl;
                 exp = atof(xp.c_str());
             }
-
+            Node*tmp;
+            old = new Node(sign * fl,exp,tmp);
+            llist.Insert(old);
+            old = tmp;
             cout << endl << "Sign is:" << sign << "\nBase is:" << fl << "\nExp :" << exp << endl;
 
-
         }
+        llist.print(head,1,outfile);
 
     }
-
-
-
     return 0;
 }
