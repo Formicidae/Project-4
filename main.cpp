@@ -90,6 +90,7 @@ int main()
             }
             Node*tmp;
             old = new Node(sign * fl,exp,tmp);
+            cout << "Ready to insert";
             llist.Insert(old);
             old = tmp;
             cout << endl << "Sign is:" << sign << "\nBase is:" << fl << "\nExp :" << exp << endl;

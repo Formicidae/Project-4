@@ -9,7 +9,7 @@ class LinkedList
     public:
         LinkedList();
         LinkedList(Node*h){head = h;};
-        Node*head = nullptr;
+        Node*head;
         float sum;
         getSum(){return sum;};
         Node* getHead(){return head;};
