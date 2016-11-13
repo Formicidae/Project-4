@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1478625981 source:d:\c and c++ programs\project4\main.cpp
+1479076634 source:d:\c and c++ programs\project4\main.cpp
 	<iostream>
 	<fstream>
 	<stdlib.h>
 	<string.h>
 	<string>
 	<sstream>
+	<Node.h>
+	<LinkedList.h>
 
 1478661163 source:c:\users\eddie\documents\github\project-4\main.cpp
 	<iostream>
@@ -25,4 +27,17 @@
 1478710951 c:\users\eddie\documents\github\project-4\include\linkedlist.h
 	<Node.h>
 	<fstream>
+
+1479074795 d:\c and c++ programs\project4\include\node.h
+
+1479076137 d:\c and c++ programs\project4\include\linkedlist.h
+	<Node.h>
+	<fstream>
+
+1479076948 source:d:\c and c++ programs\project4\src\linkedlist.cpp
+	"LinkedList.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+	<iostream>
 
