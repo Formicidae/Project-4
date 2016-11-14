@@ -68,7 +68,6 @@ int main()
             fl = atof(term1.c_str());
             //cout << "Float " << fl << endl;
             if(!term1.find('x')){
-                //constant
 
                 //break;
             }
@@ -106,6 +105,8 @@ int main()
 
         }
         cout << "Is head right: " << llist.getHead()->getBase()<< "\n";
+        outfile << "f(" << Fof << ") =";
+        llist.SortD(llist.head);
         llist.print(llist.getHead(),Fof,outfile);
         //llist.print(outfile);
         outfile << '\n';

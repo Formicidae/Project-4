@@ -10,7 +10,7 @@ class LinkedList
         LinkedList();
         LinkedList(Node*h){head = h;};
         Node*head = new Node();
-        float sum = 0;
+        long double sum = 0;
         bool headset = false;
         getSum(){return sum;};
         Node* getHead(){return head;};
@@ -22,6 +22,7 @@ class LinkedList
         void deleteM(Node*h);
         void addtoSum(float f){sum += f;};
         float getsum(){return sum;};
+        void SortD(Node*&head);
 
         ~LinkedList();
 

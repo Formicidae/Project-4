@@ -37,42 +37,89 @@ float LinkedList::exponent(float base,float e){
     }
     return base * exponent(base,e-1);
 }
-/*
-void LinkedList::print(std::ofstream &file){
-    file << " " << head->getBase() << "x^" << head->getExp() << " ";
 
-
-}
-*/
 
 float LinkedList::print(Node*ptr,float x,std::ofstream &file){
     std::cout << " " << head->getBase() << "x^" << head->getExp() << " ";
+    long double base;
+    long double exp;
+    long double powe;
     //file << " " << head->next->getBase() << "x^" << head->next->getExp() << " ";
     if(ptr->next){
         std::cout << "Going next";
-        file << " " << ptr->getBase() << "x^" << ptr->getExp() << " ";
+        if(ptr->getBase() >= 0){
+            file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+        }
+        else{
+            file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+        }
         std::cout << "printBase: " << ptr->getBase() << "\n" << "printExp: " << ptr->getExp();
-        addtoSum(ptr->getBase() * pow(x,ptr->exp));
+        base = ptr->getBase();
+        exp = ptr->getExp();
+        powe = (base * pow(x,exp));
+        addtoSum(powe);
         std::cout << "\tAdding to sum" << (ptr->getBase() * pow(x,ptr->exp));
         print(ptr->next,x,file);
     }
     else{
-        file << " " << ptr->getBase() << "x^" << ptr->getExp() << " ";
-        addtoSum(ptr->getBase() * pow(x,ptr->exp));
+        if(ptr->getBase() >= 0){
+            file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+        }
+        else{
+            file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+        }
+        base = ptr->getBase();
+        exp = ptr->getExp();
+        powe = base * pow(x,exp);
+        addtoSum(powe);
         std::cout << "\tAdding to sum" << (ptr->getBase() * pow(x,ptr->exp));
         //file.setf(fstream::fixed, fstream::floatfield);
-        file << std::fixed;
-        //file.precision(3);
-        file << " = " << getsum();
+        file << std::fixed << std::setprecision(3) << " = " << getsum();
         std::cout << "print2Base: " << ptr->getBase() << "\n" << "print2Exp: " << ptr->getExp();
+    }
+}
+
+void LinkedList::SortD(Node*&head){
+    Node * prev;
+    Node*cur;
+    Node*after;
+    bool swapped;
+
+    cur = head;
+    swapped = true;
+    //Continues while values have been swapped
+    while(swapped){
+        swapped = false;
+        cur = head;
+        prev = nullptr;
+        //loops until end of list
+        while(cur->next != nullptr){
+            after = cur->next;
+            //If values are out of order they are swapped
+            if(cur->exp < cur->next->exp){
+                if(prev == nullptr){
+                    head = after;
+                    cur->next = after->next;
+                    after->next = cur;
+                }
+                else{
+                prev->next = cur->next;
+                cur->next = after->next;
+                after->next = cur;
+                }
+                swapped = true;
+
+            }
+            prev = cur;
+            cur = after;
+        }
     }
 }
 
 
 void LinkedList::deleteM(Node*h){
-
     Node*hold;
-    if(h->next = nullptr){
+    if(h->next == nullptr){
         delete head;
         return;
     }
@@ -84,7 +131,5 @@ void LinkedList::deleteM(Node*h){
 
 LinkedList::~LinkedList()
 {
-    //dtor
-    //deleteM(head);
-
+    deleteM(head);
 }

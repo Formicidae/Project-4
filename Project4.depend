@@ -9,7 +9,7 @@
 	<Node.h>
 	<LinkedList.h>
 
-1478661163 source:c:\users\eddie\documents\github\project-4\main.cpp
+1479090047 source:c:\users\eddie\documents\github\project-4\main.cpp
 	<iostream>
 	<fstream>
 	<stdlib.h>
@@ -19,12 +19,16 @@
 	<Node.h>
 	<LinkedList.h>
 
-1478659390 c:\users\eddie\documents\github\project-4\include\node.h
+1479085571 c:\users\eddie\documents\github\project-4\include\node.h
 
-1478710975 source:c:\users\eddie\documents\github\project-4\src\linkedlist.cpp
+1479089550 source:c:\users\eddie\documents\github\project-4\src\linkedlist.cpp
 	"LinkedList.h"
+	<math.h>
+	<iostream>
+	<iomanip>
+	<iostream>
 
-1478710951 c:\users\eddie\documents\github\project-4\include\linkedlist.h
+1479088591 c:\users\eddie\documents\github\project-4\include\linkedlist.h
 	<Node.h>
 	<fstream>
 
