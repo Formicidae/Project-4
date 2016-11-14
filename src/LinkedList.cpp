@@ -48,23 +48,52 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
     //file << " " << head->next->getBase() << "x^" << head->next->getExp() << " ";
     if(ptr->next){
         std::cout << "Going next";
-        if(ptr->getBase() >= 0){
-            if(ptr->getExp() == 0){
-                file << " + " << ptr->getBase();
-            }
-            else if(ptr->getExp() == 1){
-                file << " + " << ptr->getBase() << "x";
+        if(ptr == head){
+            if(ptr->getBase() >= 0){
+                if(ptr->getExp() == 0){
+                    file << " " << ptr->getBase();
+                }
+                else if(ptr->getExp() == 1){
+                    file << " " << ptr->getBase() << "x";
+                }
+                else{
+                    file << " " << ptr->getBase() << "x^" << ptr->getExp();
+                }
             }
             else{
-                file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+                if(ptr->getExp() == 0){
+                    file << " -" << (-1 * ptr->getBase());
+                }
+                else if(ptr->getExp() == 1){
+                    file << " -" << (-1 * ptr->getBase()) << "x";
+                }
+                else{
+                    file << " -" << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+                }
             }
         }
         else{
-            if(ptr->getExp() == 0){
-            }
-            else if(ptr->getExp() == 1){
+            if(ptr->getBase() >= 0){
+                if(ptr->getExp() == 0){
+                    file << " + " << ptr->getBase();
+                }
+                else if(ptr->getExp() == 1){
+                    file << " + " << ptr->getBase() << "x";
+                }
+                else{
+                    file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+                }
             }
             else{
+                if(ptr->getExp() == 0){
+                    file << " - " << (-1 * ptr->getBase());
+                }
+                else if(ptr->getExp() == 1){
+                    file << " - " << (-1 * ptr->getBase()) << "x";
+                }
+                else{
+                    file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+                }
             }
         }
         std::cout << "printBase: " << ptr->getBase() << "\n" << "printExp: " << ptr->getExp();
@@ -76,23 +105,52 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
         print(ptr->next,x,file);
     }
     else{
-        if(ptr->getBase() >= 0){
-            if(ptr->getExp() == 0){
-                file << " + " << ptr->getBase();
-            }
-            else if(ptr->getExp() == 1){
-                file << " + " << ptr->getBase() << "x";
+        if(ptr == head){
+            if(ptr->getBase() >= 0){
+                if(ptr->getExp() == 0){
+                    file << " " << ptr->getBase();
+                }
+                else if(ptr->getExp() == 1){
+                    file << " " << ptr->getBase() << "x";
+                }
+                else{
+                    file << " " << ptr->getBase() << "x^" << ptr->getExp();
+                }
             }
             else{
-                file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+                if(ptr->getExp() == 0){
+                    file << " -" << (-1 * ptr->getBase());
+                }
+                else if(ptr->getExp() == 1){
+                    file << " -" << (-1 * ptr->getBase()) << "x";
+                }
+                else{
+                    file << " -" << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+                }
             }
         }
         else{
-            if(ptr->getExp() == 0){
-            }
-            else if(ptr->getExp() == 1){
+            if(ptr->getBase() >= 0){
+                if(ptr->getExp() == 0){
+                    file << " + " << ptr->getBase();
+                }
+                else if(ptr->getExp() == 1){
+                    file << " + " << ptr->getBase() << "x";
+                }
+                else{
+                    file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+                }
             }
             else{
+                if(ptr->getExp() == 0){
+                    file << " - " << (-1 * ptr->getBase());
+                }
+                else if(ptr->getExp() == 1){
+                    file << " - " << (-1 * ptr->getBase()) << "x";
+                }
+                else{
+                    file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+                }
             }
         }
         base = ptr->getBase();
