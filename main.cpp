@@ -44,8 +44,9 @@ int main()
 
         int nextsign = sign;
         LinkedList llist;
-        while(stringK.length() > 1){
 
+        while(stringK.length() > 1){
+            bool liketerm = false;
             sign = nextsign;
             string term1 = "";
             float exp = 0;
@@ -94,14 +95,25 @@ int main()
                 //cout << "xp :" << xp << endl;
                 exp = atof(xp.c_str());
             }
-            Node*tmp;
-            old = new Node(sign * fl,exp,tmp);
-            cout << "Ready to insert";
-            llist.Insert(old);
-             cout << endl << "\nBase is:" << old->getBase() << "\nExp :" << old->getExp() << endl;
+            Node*cur = llist.getHead();
+            while(cur->next){
+                cur = cur->next;
+                if(cur->getExp() == exp){
+                    cur->setBase((sign * fl ) + cur->base);
+                    liketerm = true;
+                }
 
-            old = tmp;
-            cout << endl << "Sign is:" << sign << "\nBase is:" << fl << "\nExp :" << exp << endl;
+            }
+            if(!liketerm){
+                Node*tmp;
+                old = new Node(sign * fl,exp,tmp);
+                cout << "Ready to insert";
+                llist.Insert(old);
+                 cout << endl << "\nBase is:" << old->getBase() << "\nExp :" << old->getExp() << endl;
+
+                old = tmp;
+                cout << endl << "Sign is:" << sign << "\nBase is:" << fl << "\nExp :" << exp << endl;
+        }
 
         }
         cout << "Is head right: " << llist.getHead()->getBase()<< "\n";

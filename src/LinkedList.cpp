@@ -73,7 +73,6 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
         powe = base * pow(x,exp);
         addtoSum(powe);
         std::cout << "\tAdding to sum" << (ptr->getBase() * pow(x,ptr->exp));
-        //file.setf(fstream::fixed, fstream::floatfield);
         file << std::fixed << std::setprecision(3) << " = " << getsum();
         std::cout << "print2Base: " << ptr->getBase() << "\n" << "print2Exp: " << ptr->getExp();
     }
