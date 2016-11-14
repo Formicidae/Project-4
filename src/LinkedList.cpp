@@ -7,6 +7,7 @@
 LinkedList::LinkedList()
 {
     //ctor
+    headset = false;
 }
 
 void LinkedList::Insert(Node*n){
@@ -42,16 +43,29 @@ float LinkedList::exponent(float base,float e){
 float LinkedList::print(Node*ptr,float x,std::ofstream &file){
     std::cout << " " << head->getBase() << "x^" << head->getExp() << " ";
     long double base;
-    long double exp;
+    int exp;
     long double powe;
     //file << " " << head->next->getBase() << "x^" << head->next->getExp() << " ";
     if(ptr->next){
         std::cout << "Going next";
         if(ptr->getBase() >= 0){
-            file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+            if(ptr->getExp() == 0){
+                file << " + " << ptr->getBase();
+            }
+            else if(ptr->getExp() == 1){
+                file << " + " << ptr->getBase() << "x";
+            }
+            else{
+                file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+            }
         }
         else{
-            file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+            if(ptr->getExp() == 0){
+            }
+            else if(ptr->getExp() == 1){
+            }
+            else{
+            }
         }
         std::cout << "printBase: " << ptr->getBase() << "\n" << "printExp: " << ptr->getExp();
         base = ptr->getBase();
@@ -63,10 +77,23 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
     }
     else{
         if(ptr->getBase() >= 0){
-            file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+            if(ptr->getExp() == 0){
+                file << " + " << ptr->getBase();
+            }
+            else if(ptr->getExp() == 1){
+                file << " + " << ptr->getBase() << "x";
+            }
+            else{
+                file << " + " << ptr->getBase() << "x^" << ptr->getExp();
+            }
         }
         else{
-            file << " - " << (-1 * ptr->getBase()) << "x^" << ptr->getExp();
+            if(ptr->getExp() == 0){
+            }
+            else if(ptr->getExp() == 1){
+            }
+            else{
+            }
         }
         base = ptr->getBase();
         exp = ptr->getExp();

@@ -49,7 +49,7 @@ int main()
             bool liketerm = false;
             sign = nextsign;
             string term1 = "";
-            float exp = 0;
+            int exp = 0;
             int i = 0;
             while(stringK[i] != '+' && stringK[i] != '-' && stringK[i] != 'N'){
                 i++;
@@ -93,18 +93,29 @@ int main()
             else{
                 string xp = term1.substr(i+2);
                 //cout << "xp :" << xp << endl;
-                exp = atof(xp.c_str());
+                exp = atoi(xp.c_str());
             }
             Node*cur = llist.getHead();
+            cout << "\nexp is: " << exp;
+            if(llist.getHead()->getExp() == exp){
+                    llist.getHead()->setBase((sign * fl ) + llist.getHead()->base);
+                    cout << "\t\t\t\t\tLIKE TERM FOUND";
+                    liketerm = true;
+                    //break;
+                }
             while(cur->next){
-                cur = cur->next;
+                cout << "\t\t\t\t\tLOOKING FOR LIKE TERM";
+                cout << "\n\n\t" << cur->getExp() << " = " << exp << "\n\n";
                 if(cur->getExp() == exp){
                     cur->setBase((sign * fl ) + cur->base);
+                    cout << "\t\t\t\t\tLIKE TERM FOUND";
                     liketerm = true;
+                    break;
                 }
-
+                cur = cur->next;
             }
-            if(!liketerm){
+            cout << "\nexp is: " << exp;
+            if(!liketerm && (fl != 0 || exp != 0)){
                 Node*tmp;
                 old = new Node(sign * fl,exp,tmp);
                 cout << "Ready to insert";
