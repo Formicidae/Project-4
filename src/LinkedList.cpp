@@ -26,7 +26,7 @@ void LinkedList::Insert(Node*n){
 		cur->next = n;
 }
 
-float LinkedList::exponent(float base,float e){
+long double LinkedList::exponent(long double base,long double e){
     if(e == 0){
         return 1;
     }
@@ -37,7 +37,7 @@ float LinkedList::exponent(float base,float e){
 }
 
 
-float LinkedList::print(Node*ptr,float x,std::ofstream &file){
+long double LinkedList::print(Node*ptr,long double x,std::ofstream &file){
     long double base;
     int exp;
     double powe;

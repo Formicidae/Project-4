@@ -16,11 +16,11 @@ class LinkedList
         Node* getHead(){return head;};
         void setHead(Node*h){head = h;};
         void Insert(Node*n);
-        float print(Node* ptr,float x,std::ofstream &file);
-        float exponent(float b,float exp);
+        long double print(Node* ptr,long double x,std::ofstream &file);
+        long double exponent(long double b,long double exp);
         void deleteM(Node*h);
-        void addtoSum(float f){sum += f;};
-        float getsum(){return sum;};
+        void addtoSum(long double f){sum += f;};
+        long double getsum(){return sum;};
         void SortD(Node*&head);
 
         ~LinkedList();

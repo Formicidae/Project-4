@@ -27,7 +27,7 @@ int main()
         char*linePtr = line;
         infile.getline(line,256);
         //extracts the x value
-        float Fof = atof(line + 2);
+        long double Fof = atof(line + 2);
         linePtr = strstr(line,"=") + 1;
 
         string stringK;
@@ -65,7 +65,7 @@ int main()
                 nextsign = 1;
             }
             stringK = stringK.substr(i+1);
-            float fl = 0;
+            long double fl = 0;
             //extracts base
             fl = atof(term1.c_str());
             //Looks for edge cases such as constants
