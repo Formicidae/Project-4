@@ -6,34 +6,31 @@
 
 LinkedList::LinkedList()
 {
-    //ctor
     headset = false;
 }
 
 void LinkedList::Insert(Node*n){
 
+        //Checks if there is a head to the linked list
 		if(!headset){
-            std::cout << "First term";
             head->setBase(n->getBase());
             head->setExp(n->getExp());
-            std::cout << "\n\t\t\tBase: " << head->getBase() << "\n" << "\t\t\tExp: " << head->getExp() << "\n";
             headset = true;
             return;
 		}
+		//Goes to the end of the list and adds the node
 		Node*cur = head;
         while(cur->next)
 			cur = cur->next;
         n->next = nullptr;
 		cur->next = n;
-		//std::cout << "\n\t\t\tBase: " << cur->next->getBase() << "\n" << "\t\t\tExp: " << cur->next->getExp() << "\n";
-
 }
 
 float LinkedList::exponent(float base,float e){
     if(e == 0){
         return 1;
     }
-    if(e == 0){
+    if(e == 1){
         return base;
     }
     return base * exponent(base,e-1);
@@ -41,14 +38,13 @@ float LinkedList::exponent(float base,float e){
 
 
 float LinkedList::print(Node*ptr,float x,std::ofstream &file){
-    std::cout << " " << head->getBase() << "x^" << head->getExp() << " ";
     long double base;
     int exp;
-    long double powe;
-    //file << " " << head->next->getBase() << "x^" << head->next->getExp() << " ";
+    double powe;
     if(ptr->next){
-        std::cout << "Going next";
+        //Checks if it's at head to remove the +
         if(ptr == head){
+            //If base is positive use a +
             if(ptr->getBase() >= 0){
                 if(ptr->getExp() == 0){
                     file << " " << ptr->getBase();
@@ -73,6 +69,7 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
             }
         }
         else{
+            //If base is positive and not the head
             if(ptr->getBase() >= 0){
                 if(ptr->getExp() == 0){
                     file << " + " << ptr->getBase();
@@ -96,12 +93,11 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
                 }
             }
         }
-        std::cout << "printBase: " << ptr->getBase() << "\n" << "printExp: " << ptr->getExp();
+        //calculates term and adds it to sum
         base = ptr->getBase();
         exp = ptr->getExp();
         powe = (base * pow(x,exp));
         addtoSum(powe);
-        std::cout << "\tAdding to sum" << (ptr->getBase() * pow(x,ptr->exp));
         print(ptr->next,x,file);
     }
     else{
@@ -157,9 +153,7 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
         exp = ptr->getExp();
         powe = base * pow(x,exp);
         addtoSum(powe);
-        std::cout << "\tAdding to sum" << (ptr->getBase() * pow(x,ptr->exp));
         file << std::fixed << std::setprecision(3) << " = " << getsum();
-        std::cout << "print2Base: " << ptr->getBase() << "\n" << "print2Exp: " << ptr->getExp();
     }
 }
 

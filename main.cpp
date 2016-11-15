@@ -13,6 +13,7 @@ using namespace std;
 
 int main()
 {
+    //Opens input and output file
     string infileName = "poly.txt";
     ifstream infile(infileName);
     string outfileName = "answers.txt";
@@ -20,31 +21,32 @@ int main()
     Node*head = new Node(0,0,nullptr);
     Node*old = head;
 
+    //Loops through each line
     while(infile.good()){
         char line[256];
         char*linePtr = line;
         infile.getline(line,256);
+        //extracts the x value
         float Fof = atof(line + 2);
-        //cout << "F : " <<   Fof << endl;
         linePtr = strstr(line,"=") + 1;
 
-        string stringK = " 5.9x^11 + x^3 - 3x^10 + 3";
+        string stringK;
         stringK = linePtr;
 
-//        getline()
-
+        //adds end of string char
         stringK += 'N';
+        //Checks for sign
         int sign = 1;
         if(stringK[1] == '-'){
             sign = -1;
             stringK = stringK.substr(2);
-            cout << endl << stringK << endl;
         }
 
 
         int nextsign = sign;
         LinkedList llist;
 
+        //Looks for terms by finding + or -
         while(stringK.length() > 1){
             bool liketerm = false;
             sign = nextsign;
@@ -54,8 +56,7 @@ int main()
             while(stringK[i] != '+' && stringK[i] != '-' && stringK[i] != 'N'){
                 i++;
             }
-            //cout << stringK << endl;
-            //cout << "I: " << i << endl;
+
             term1 = stringK.substr(0,i);
             if(stringK[i] == '-'){
                 nextsign = -1;
@@ -64,16 +65,16 @@ int main()
                 nextsign = 1;
             }
             stringK = stringK.substr(i+1);
-            //cout << "\t\t\tTern ="<< term1 <<  endl;
             float fl = 0;
+            //extracts base
             fl = atof(term1.c_str());
-            //cout << "Float " << fl << endl;
+            //Looks for edge cases such as constants
             if(!term1.find('x')){
 
                 //break;
             }
+            //If there is no number before the x
             if(term1[1] == 'x'){
-                //base is 1
                 fl = 1;
             }
             term1 += 'N';
@@ -92,48 +93,38 @@ int main()
             }
             else{
                 string xp = term1.substr(i+2);
-                //cout << "xp :" << xp << endl;
+                //extracts exponent
                 exp = atoi(xp.c_str());
             }
             Node*cur = llist.getHead();
-            cout << "\nexp is: " << exp;
+            //Looks for like terms
+            //Checks first term in linked list
             if(llist.getHead()->getExp() == exp){
                     llist.getHead()->setBase((sign * fl ) + llist.getHead()->base);
-                    cout << "\t\t\t\t\tLIKE TERM FOUND";
                     liketerm = true;
-                    //break;
                 }
             while(cur->next){
-                cout << "\t\t\t\t\tLOOKING FOR LIKE TERM";
-                cout << "\n\n\t" << cur->getExp() << " = " << exp << "\n\n";
                 if(cur->getExp() == exp){
                     cur->setBase((sign * fl ) + cur->base);
-                    cout << "\t\t\t\t\tLIKE TERM FOUND";
                     liketerm = true;
                     break;
                 }
                 cur = cur->next;
             }
-            cout << "\nexp is: " << exp;
             if(!liketerm && (fl != 0 || exp != 0)){
                 Node*tmp;
+                //Creates a new node and inserts it
                 old = new Node(sign * fl,exp,tmp);
-                cout << "Ready to insert";
                 llist.Insert(old);
-                 cout << endl << "\nBase is:" << old->getBase() << "\nExp :" << old->getExp() << endl;
-
                 old = tmp;
-                cout << endl << "Sign is:" << sign << "\nBase is:" << fl << "\nExp :" << exp << endl;
         }
 
         }
-        cout << "Is head right: " << llist.getHead()->getBase()<< "\n";
+        //Prints the linked list
         outfile << "f(" << Fof << ") =";
         llist.SortD(llist.head);
         llist.print(llist.getHead(),Fof,outfile);
-        //llist.print(outfile);
         outfile << '\n';
-
     }
     return 0;
 }

@@ -16,7 +16,6 @@ class LinkedList
         Node* getHead(){return head;};
         void setHead(Node*h){head = h;};
         void Insert(Node*n);
-        //void print(std::ofstream &file);
         float print(Node* ptr,float x,std::ofstream &file);
         float exponent(float b,float exp);
         void deleteM(Node*h);
