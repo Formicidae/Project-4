@@ -96,7 +96,7 @@ float LinkedList::print(Node*ptr,float x,std::ofstream &file){
         //calculates term and adds it to sum
         base = ptr->getBase();
         exp = ptr->getExp();
-        powe = (base * pow(x,exp));
+        powe = (base * exponent(x,exp));
         addtoSum(powe);
         print(ptr->next,x,file);
     }
